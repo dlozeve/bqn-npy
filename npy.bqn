@@ -32,7 +32,8 @@ ParseHeader←{𝕊𝕩:
   version←@-˜(0‿1+≠magicString)⊏𝕩
   headerlen←+´1‿256×@-˜(2‿3+≠magicString)⊏𝕩
   header←(¬∊⟜(' '∾lf))⊸/headerlen↑(4+≠magicString)↓𝕩
-  dtype←3↑(⊐⟜'<'↓⊢) (("descr"⍷header)⊐1)↓header
+  dtype←3↑(⌊´∘⊐⟜"<>"↓⊢) (("descr"⍷header)⊐1)↓header
+  ("Unsupported dtype: "∾dtype) ! ⊑(<dtype)∊dtypes
   shapestr←(⊐⟜')'↑⊢) (1⊸+∘⊐⟜'('↓⊢) (("shape"⍷header)⊐1)↓header
   shape←•BQN¨','((⊢-˜+`×¬)∘=⊔⊢)shapestr
   ⟨version,dtype,shape,headerlen+2+2+≠magicString⟩
