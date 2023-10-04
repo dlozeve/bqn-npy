@@ -1,0 +1,44 @@
+* Serialization and deserialization library for BQN arrays
+
+This library allows to save and load BQN arrays to the binary [[https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html][NPY
+format]] compatible with Numpy. It can also be used to interoperate
+with Numpy.
+
+** Limitations
+
+The library only support homogeneous multidimensional arrays with the
+following Numpy dtypes:
+
+| dtype | Description                                                 |
+|-------+-------------------------------------------------------------|
+| ~<f8~ | little-endian 64-bit double-precision floating point number |
+| ~<i4~ | little-endian 32-bit signed integer                         |
+| ~<u4~ | little-endian 32-bit unsigned integer                       |
+
+All other dtypes (big-endian numbers, booleans, bytes, objects, other
+sizes of floats or integers) are unsupported and files containing them
+will raise an error when loaded.
+
+When serializing BQN arrays, the library uses the most restrictive
+dtype possible. An array consisting only of positive integers will be
+saved as ~<u4~, otherwise ~<i4~ if there are negative integers,
+otherwise ~<f8~ for arbitrary numbers.
+
+** Usage
+
+#+begin_src bqn
+⟨SaveNpy,LoadNpy⟩←•Import"npy.bqn"
+
+# Deserialization
+arr1←LoadNpy"arr1.npy"
+
+# Serialization
+arr2←2‿3‿4⥊•rand.Range 0  # will be saved as a floating point array
+"arr2.npy" SaveNpy arr2
+#+end_src
+
+** Tests
+
+Run the Python script to generate test data: =python gentest.py=.
+
+To run tests, run =bqn tests.bqn=.
