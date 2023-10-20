@@ -11,7 +11,7 @@ ArrayFromBytes←{⟨8‿'c',DtypeToFormat 𝕨⟩•bit._cast 𝕩}
 
 # Saving
 To_i16le←{@+256(|∾⌊∘÷˜)𝕩}
-FormatShape←{'('∾(1↓∾⥊','∾˘•Fmt¨≢𝕩)∾')'}
+FormatShape←{'('∾(1↓∾⥊','∾˘•Fmt¨≢𝕩)∾",)"}
 
 BuildHeader←{dtype 𝕊 data:
   version←1‿0
