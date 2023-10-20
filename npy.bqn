@@ -24,7 +24,7 @@ BuildHeader←{dtype 𝕊 data:
 }
 DetectDtype←{(∧´⥊⌊⊸=¨𝕩)⊑⟨"<f8",(∧´⥊0≤𝕩)⊑"<i4"‿"<u4"⟩}
 EncodeNpy←DetectDtype⊸(BuildHeader∾ArrayToBytes⟜⥊)
-SaveNpy←•file.Bytes⟜EncodeNpy
+SaveNpy←(•wdpath⊸•file.At)⊸•file.Bytes⟜EncodeNpy
 
 # Loading
 ParseHeader←{𝕊𝕩:
