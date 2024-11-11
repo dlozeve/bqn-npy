@@ -4,7 +4,11 @@ lf←@+10
 magicString←(@+147)∾"NUMPY"
 
 # Type conversions
-dtypes‿formats←⟨"<f8","<i4","<u4"⟩‿⟨64‿'f',32‿'i',32‿'u'⟩
+
+# CBQN does not support other widths than 1 for 'u'. However, signed
+# and unsigned integers seem to have the same behavior for numbers
+# below 2⋆31.
+dtypes‿formats←⟨"<f8","<i4","<u4"⟩‿⟨64‿'f',32‿'i',1‿'u'⟩
 DtypeToFormat←{(⊑dtypes⊐<𝕩)⊑formats}
 ArrayToBytes←{⟨DtypeToFormat 𝕨,8‿'c'⟩•bit._cast 𝕩}
 ArrayFromBytes←{⟨8‿'c',DtypeToFormat 𝕨⟩•bit._cast 𝕩}

@@ -1,8 +1,8 @@
 ⟨SaveNpy,LoadNpy⟩←•Import"npy.bqn"
 
 floatArr←2‿3•rand.Range 0
-intArr←50-˜2‿3•rand.Range 100
-uintArr←2‿3•rand.Range 100
+intArr←(2⋆31)-˜2‿3•rand.Range 2⋆32
+uintArr←2‿3•rand.Range 2⋆31
 
 "test_float.npy"SaveNpy floatArr
 "test_int.npy"SaveNpy intArr
