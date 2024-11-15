@@ -1,8 +1,10 @@
-* Serialization and deserialization library for BQN arrays
+* bqn-npy
 
 This library allows to save and load BQN arrays to the binary [[https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html][NPY
 format]] compatible with Numpy. It can also be used to interoperate
 with Numpy.
+
+See also [[https://github.com/dlozeve/bqn-safetensors][bqn-safetensors]] for another array serialization format.
 
 ** Limitations
 
